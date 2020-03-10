@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div class="container">
+    <div>
       <div v-html="postData.html_content"></div>
     </div>
   </div>
