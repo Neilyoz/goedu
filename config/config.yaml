@@ -1,0 +1,9 @@
+debug: false
+key: alexskywin
+mysql:
+  user: root
+  pass:
+  host: 127.0.0.1
+  port: 3306
+  database: demo
+  charset: utf8mb4
