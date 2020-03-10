@@ -1,18 +1,24 @@
 <template>
   <div class="container">
-    <form v-on:submit.prevent="submit()">
-      <div>
+    <form v-on:submit.prevent="submit()" class="article">
+      <div class="form-group">
         <label for>标题</label>
-        <input type="text" v-model="postData.title" />
-      </div>
-      <div>
-        <label for>文章</label>
-        <textarea cols="30" rows="10" v-model="postData.plain_content"></textarea>
+        <input type="text" class="form-item" v-model="postData.title" />
       </div>
 
-      <div>
+      <div class="form-group">
+        <div>
+          <mavon-editor
+            :subfield="false"
+            :toolbars="toolbars"
+            v-model="postData.plain_content"
+          ></mavon-editor>
+        </div>
+      </div>
+
+      <div class="form-group">
         <label for></label>
-        <button type="submit">添加</button>
+        <button type="submit" class="btn">发表</button>
       </div>
     </form>
   </div>
@@ -25,12 +31,65 @@ export default {
       postData: {
         title: "",
         plain_content: ""
+      },
+
+      toolbars: {
+        bold: true, // 粗体
+        italic: true, // 斜体
+        header: true, // 标题
+        underline: true, // 下划线
+        strikethrough: true, // 中划线
+        mark: false, // 标记
+        superscript: false, // 上角标
+        subscript: false, // 下角标
+        quote: true, // 引用
+        ol: true, // 有序列表
+        ul: true, // 无序列表
+        link: true, // 链接
+        imagelink: true, // 图片链接
+        code: true, // code
+        table: true, // 表格
+        fullscreen: true, // 全屏编辑
+        readmodel: false, // 沉浸式阅读
+        htmlcode: true, // 展示html源码
+        help: true, // 帮助
+        /* 1.3.5 */
+        undo: true, // 上一步
+        redo: true, // 下一步
+        trash: false, // 清空
+        save: false, // 保存（触发events中的save事件）
+        /* 1.4.2 */
+        navigation: true, // 导航目录
+        /* 2.1.8 */
+        alignleft: true, // 左对齐
+        aligncenter: true, // 居中
+        alignright: true, // 右对齐
+        /* 2.2.1 */
+        subfield: true, // 单双栏模式
+        preview: true // 预览
       }
     };
   },
+
+  async created() {
+    if (this.$route.params.id) {
+      const response = await this.$http.get(
+        "/article/" + this.$route.params.id
+      );
+      if (response.data.code === 200) {
+        this.postData = response.data.data;
+      }
+    }
+  },
+
   methods: {
     async submit() {
-      const response = await this.$http.post("/article/create", {
+      let postUrl = "/article/create";
+      if (this.$route.params.id) {
+        postUrl = "/article/edit";
+      }
+
+      const response = await this.$http.post(postUrl, {
         ...this.postData
       });
 
@@ -41,3 +100,36 @@ export default {
   }
 };
 </script>
+
+<style lang="scss" scoped>
+.v-note-wrapper {
+  height: 500px;
+}
+
+.article {
+  .form-group {
+    margin-bottom: 10px;
+    label {
+      display: block;
+      padding: 5px 0;
+      color: #595959;
+    }
+
+    .form-item {
+      box-sizing: border-box;
+      width: 100%;
+      border-radius: 5px;
+      padding: 5px;
+      border: 1px solid #ccc;
+      outline: none;
+    }
+
+    .btn {
+      border: 1px solid #ccc;
+      padding: 5px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  }
+}
+</style>

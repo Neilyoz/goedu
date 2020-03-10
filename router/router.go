@@ -18,6 +18,8 @@ func Router(engine *gin.Engine) *gin.Engine {
 		// 加载权限中间件
 		apiRouter.Use(middleware.Auth())
 		apiRouter.POST("/article/create", controller.ArticleCreate)
+		apiRouter.POST("/article/edit", controller.ArticleEdit)
+		apiRouter.GET("/article/:id", controller.ArticleDetail)
 	}
 
 	return engine

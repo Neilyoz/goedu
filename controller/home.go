@@ -5,6 +5,7 @@ import (
 	"net/http"
 )
 
+// Index 首页信息
 func Index(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{
 		"code":    http.StatusOK,

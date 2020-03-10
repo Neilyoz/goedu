@@ -6,10 +6,10 @@
           <router-link to="/">首页</router-link>
         </li>
         <li>|</li>
-        <li>
+        <!-- <li>
           <router-link to="/course">课程</router-link>
         </li>
-        <li>|</li>
+        <li>|</li> -->
         <li>
           <router-link to="/article">文章</router-link>
         </li>

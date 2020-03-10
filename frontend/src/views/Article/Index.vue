@@ -1,8 +1,15 @@
 <template>
   <div class="container">
     <div>
-      <div v-for="article in articles" :key="article.id">
-        <div>标题：{{article.title}}</div>
+      <div class="article_wrap" v-for="article in articles" :key="article.id">
+        <div class="title">
+          标题：{{ article.title }} [<router-link
+            :to="{ name: 'Article/Edit', params: { id: article.id } }"
+            >编辑</router-link
+          >]
+        </div>
+        <hr />
+        <div v-html="article.html_content"></div>
       </div>
     </div>
   </div>
@@ -30,3 +37,16 @@ export default {
   }
 };
 </script>
+
+<style lang="scss" scoped>
+.article_wrap {
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
+  padding: 15px;
+
+  .title {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+}
+</style>

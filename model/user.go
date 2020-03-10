@@ -1,8 +1,9 @@
 package model
 
 import (
-	"github.com/jinzhu/gorm"
 	"goedu/utils"
+
+	"github.com/jinzhu/gorm"
 )
 
 // User 用户表
@@ -10,7 +11,7 @@ type User struct {
 	ID        uint    `json:"id"`
 	Username  string  `form:"username" json:"username"`
 	Email     string  `form:"email" json:"email"`
-	Password  string  `form:"password" json:"-"`
+	Password  string  `form:"password" json:"password"`
 	CreatedAt MyTime  `json:"created_at"`
 	UpdatedAt MyTime  `json:"updated_at"`
 	DeletedAt *MyTime `json:"deleted_at" sql:"index"`

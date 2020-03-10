@@ -5,7 +5,7 @@ type Article struct {
 	Title        string  `json:"title"`
 	PlainContent string  `gorm:"type:longtext" json:"plain_content"`
 	HtmlContent  string  `gorm:"type:longtext" json:"html_content"`
-	UserID       uint    `json:"-"`
+	UserID       uint    `json:"user_id"`
 	User         *User   `json:"user"`
 	CreatedAt    MyTime  `json:"created_at"`
 	UpdatedAt    MyTime  `json:"updated_at"`

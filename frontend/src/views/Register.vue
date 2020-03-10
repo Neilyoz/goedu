@@ -1,7 +1,11 @@
 <template>
   <div class="container">
     <div>
-      <form class="register-form" v-on:submit.prevent="submit()" autocomplete="off">
+      <form
+        class="register-form"
+        v-on:submit.prevent="submit()"
+        autocomplete="off"
+      >
         <div class="form-items">
           <label for="username">用户名：</label>
           <input type="text" id="username" v-model="postData.username" />
@@ -43,6 +47,11 @@ export default {
       const response = await this.$http.post("/register", { ...this.postData });
 
       if (response.data.code === 200) {
+        localStorage.setItem("token", response.data.data.token);
+        this.$store.commit("setToken", response.data.data.token);
+
+        localStorage.setItem("isLogin", true);
+        this.$store.commit("setLoginStatus", true);
         this.$router.push("/");
       }
     }
