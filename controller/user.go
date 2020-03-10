@@ -32,7 +32,8 @@ func Register(c *gin.Context) {
 		"code":    200,
 		"message": "success",
 		"data": gin.H{
-			"token": "Bearer " + data,
+			"token":   "Bearer " + data,
+			"user_id": user.ID,
 		},
 	})
 }
@@ -72,7 +73,8 @@ func Login(c *gin.Context) {
 		"code":    http.StatusOK,
 		"message": "success",
 		"data": gin.H{
-			"token": "Bearer " + data,
+			"token":   "Bearer " + data,
+			"user_id": user.ID,
 		},
 	})
 }

@@ -14,12 +14,14 @@ func Router(engine *gin.Engine) *gin.Engine {
 		apiRouter.POST("/register", controller.Register)   // 用户注册
 		apiRouter.POST("/login", controller.Login)         // 用户登录
 		apiRouter.GET("/article", controller.ArticleIndex) // 文章列表
+		apiRouter.GET("/about/:slug", controller.AboutDetail)
 
 		// 加载权限中间件
 		apiRouter.Use(middleware.Auth())
 		apiRouter.POST("/article/create", controller.ArticleCreate)
 		apiRouter.POST("/article/edit", controller.ArticleEdit)
 		apiRouter.GET("/article/:id", controller.ArticleDetail)
+		apiRouter.POST("/about/store", controller.AboutStore)
 	}
 
 	return engine

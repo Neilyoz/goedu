@@ -29,27 +29,27 @@ const routes = [
       isPublic: true
     }
   },
-  {
-    path: "/course",
-    name: "Course",
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/Course.vue"),
-    meta: {
-      isPublic: true
-    }
-  },
+  // {
+  //   path: "/course",
+  //   name: "Course",
+  //   component: () =>
+  //     import(/* webpackChunkName: "about" */ "../views/Course.vue"),
+  //   meta: {
+  //     isPublic: true
+  //   }
+  // },
   {
     path: "/article",
     component: () => import("../views/Article.vue"),
     children: [
-      {
-        path: "",
-        name: "Article",
-        component: () => import("../views/Article/Index.vue"),
-        meta: {
-          isPublic: true
-        }
-      },
+      // {
+      //   path: "",
+      //   name: "Article",
+      //   component: () => import("../views/Article/Index.vue"),
+      //   meta: {
+      //     isPublic: true
+      //   }
+      // },
       {
         path: "create",
         name: "Article/Create",
@@ -70,6 +70,17 @@ const routes = [
         path: "",
         name: "Profile",
         component: () => import("../views/Profile/Index.vue")
+      }
+    ]
+  },
+  {
+    path: "/page",
+    component: () => import("../views/Page.vue"),
+    children: [
+      {
+        path: '',
+        name: 'Page',
+        component: () => import("../views/Page/Edit.vue")
       }
     ]
   },

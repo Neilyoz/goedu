@@ -52,6 +52,9 @@ export default {
 
         localStorage.setItem("isLogin", true);
         this.$store.commit("setLoginStatus", true);
+
+        localStorage.setItem("userId", response.data.data.user_id)
+        this.$store.commit("setUserId", response.data.data.user_id);
         this.$router.push("/");
       }
     }

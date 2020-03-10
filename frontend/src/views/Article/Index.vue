@@ -3,10 +3,13 @@
     <div>
       <div class="article_wrap" v-for="article in articles" :key="article.id">
         <div class="title">
-          标题：{{ article.title }} [<router-link
+          标题：{{ article.title }}
+          <span v-if="$store.getters.isLogin && $store.getters.userId == article.user_id">
+            [<router-link
             :to="{ name: 'Article/Edit', params: { id: article.id } }"
             >编辑</router-link
           >]
+            </span>
         </div>
         <hr />
         <div v-html="article.html_content"></div>

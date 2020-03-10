@@ -7,6 +7,7 @@ export default new Vuex.Store({
   state: {
     isLogin: localStorage.getItem('isLogin') || false,
     token: localStorage.getItem('token') || '',
+    userId: localStorage.getItem('userId') || '',
   },
   getters: {
     isLogin: state => {
@@ -14,6 +15,9 @@ export default new Vuex.Store({
     },
     token: state => {
       return state.token;
+    },
+    userId: state => {
+      return state.userId
     }
   },
   mutations: {
@@ -21,7 +25,10 @@ export default new Vuex.Store({
       state.isLogin = status
     },
     setToken(state, token) {
-      state.token = token;
+      state.token = token
+    },
+    setUserId(state, user_id) {
+      state.userId = user_id
     }
   },
   actions: {

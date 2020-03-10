@@ -17,7 +17,7 @@
 
       <div class="form-group">
         <label for></label>
-        <button type="submit" class="btn">发表</button>
+        <button type="submit" class="btn">修改</button>
         <button type="button" class="btn" @click="back()">返回</button>
       </div>
     </form>
@@ -72,22 +72,13 @@ export default {
   },
 
   async created() {
-    if (this.$route.params.id) {
-      const response = await this.$http.get(
-        "/article/" + this.$route.params.id
-      );
-      if (response.data.code === 200) {
-        this.postData = response.data.data;
-      }
-    }
+    let response = await this.$http.get('about/about')
+    this.postData = response.data.data
   },
 
   methods: {
     async submit() {
-      let postUrl = "/article/create";
-      if (this.$route.params.id) {
-        postUrl = "/article/edit";
-      }
+      let postUrl = "/about/store";
 
       const response = await this.$http.post(postUrl, {
         ...this.postData

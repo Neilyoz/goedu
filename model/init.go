@@ -29,7 +29,7 @@ func init() {
 	}
 
 	DB = db
-	db.AutoMigrate(&User{}, &Article{})
+	db.AutoMigrate(&User{}, &Article{}, &Page{})
 }
 
 // GetDB 返回数据库对象
